@@ -16,6 +16,14 @@ namespace Scheduler.API.Controllers
             _repo = repo;
 
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetInterview(int id)
+        {
+           var interview = await _repo.GetInterview(id);
+           return Ok(interview);
+        }
+
         [HttpPost("save")]
         public async Task<IActionResult> Save([FromBody]InterviewToBeScheduledDto interviewToBeScheduledDto)
         {
@@ -23,8 +31,9 @@ namespace Scheduler.API.Controllers
             interview.Recruiter.Id=1;
             interview.InterviewDate= interviewToBeScheduledDto.date;
             
+           
             var scheduledInterview= await _repo.ScheduleInterview(interview);
-            return StatusCode(201);
+            return Ok();
         }
 
     }

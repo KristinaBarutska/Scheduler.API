@@ -1,4 +1,6 @@
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Scheduler.API.Dtos;
 using Scheduler.API.Models;
 
 namespace Scheduler.API.Data
@@ -11,13 +13,17 @@ namespace Scheduler.API.Data
             _context = context;
 
         }
-     async Task<Interview> IInterviewRepository.ScheduleInterview(Interview interview)
-        {
-            //interview.InterviewDate= interview.InterviewDate.ToString();
-            await _context.Interviews.AddAsync(interview);
-            await _context.SaveChangesAsync();
 
-            return interview;
+        public async Task<Interview> GetInterview(int id)
+        {
+            var interview = await _context.Interviews.FirstOrDefaultAsync(x =>x.Id==id);
+           return interview;
+        }
+
+        public Task<Interview> ScheduleInterview(Interview interview)
+        {
+            throw new System.NotImplementedException();
         }
     }
-}
+     
+    }
