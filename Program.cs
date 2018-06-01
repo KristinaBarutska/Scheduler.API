@@ -20,6 +20,7 @@ namespace Scheduler.API
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:5555")
                 .Build();
     }
 }

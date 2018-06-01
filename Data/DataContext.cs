@@ -7,5 +7,6 @@ namespace Scheduler.API.Data
     {
         public DataContext(DbContextOptions<DataContext> options) :base(options) {}
         public DbSet <Recruiter> Recruiters {get; set;}
+        public DbSet <Interview> Interviews {get; set;}
     }
 }
